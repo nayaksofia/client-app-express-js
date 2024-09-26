@@ -1,0 +1,38 @@
+<div class="container">
+    <h2>Meeting Schedule List</h2>
+  
+    <!-- Show a message if it exists -->
+    <p *ngIf="message" class="alert alert-info">{{ message }}</p>
+  
+    <!-- Display the meetings in a table format -->
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Meeting Topic</th>
+          <th>Number of People</th>
+          <th>Meeting Date</th>
+          <th>Start Time</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Iterate over meetings array to display each meeting -->
+        <tr *ngFor="let meeting of meetings">
+          <td>{{ meeting.ID}}</td>
+          <td>{{ meeting.MeetingTopic }}</td>
+          <td>{{ meeting.NumberOfPeople }}</td>
+          <td>{{ meeting.MeetingDate | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ meeting.StartTime }}</td>
+          <td>
+            <!-- Edit button: Navigate to the edit page -->
+            <button class="btn btn-primary"  routerLink="/editMeetings/{{meeting.ID}}">Edit</button>
+  
+            <!-- Delete button: Delete the meeting -->
+            <button class="btn btn-danger" (click)="onDelete(meeting.ID)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

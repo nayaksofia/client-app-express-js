@@ -1,0 +1,42 @@
+<div class="container mt-3">
+    
+    <h1>Client Details: </h1>
+
+    <table class="table table-bordered" *ngIf="clients.length > 0; else noData">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Password</th>
+                <th>Repeat Password</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let client of clients">
+                <td>{{client.ID}}</td>
+                <td>{{client.Name}}</td>
+                <td>{{client.Email}}</td>
+                <td>{{client.Address}}</td>
+                <td>{{client.Password}}</td>
+                <td>{{client.RepeatPassword}}</td>
+                <td>
+                    <button routerLink="/editClient/{{client.ID}}">Edit</button> <!--This will open a new webpage-->
+                </td>
+
+                <td>
+                    <button (click)="deleteClient(client.ID)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ng-template #noData>
+        <p>No client data available.</p>
+    </ng-template>
+
+    <h3>{{message}}</h3>
+</div>
